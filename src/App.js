@@ -3,17 +3,20 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  const [time,setTime] = useState(1);
-
+  const [myArray,setMyArray] = useState([]);
   const handleClick = () =>{
-    setTime(time>11?0:time+1);
+    const inputTag = document.querySelector('input');
+    console.log(inputTag);
+    setMyArray([...myArray,inputTag.innerText])
   }
-  console.log('업데이트');
 
   return (
     <div>
-      <span>현재 시각: {time} 시</span>
-      <button onClick={handleClick}>Update</button>
+      <input type="text" />
+      <button onClick={handleClick}>Upload</button>
+      {myArray.forEach((value,idx)=>{
+        (<h1>{value}</h1>)
+      })}
     </div>
   );
 }
