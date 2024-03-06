@@ -10,7 +10,9 @@ const heavyWork = () =>{
 function App() {
   // 이 안의 초기세팅은 계속 불려질때마다 실행되므로
   // 별개의 효율적인 방법이 필요  
-  const [myArray,setMyArray] = useState(heavyWork());
+  const [myArray,setMyArray] = useState(()=>{
+    return heavyWork();
+  });
   const [input,setInput] = useState('');
 
   const handleInput = (e) =>{
