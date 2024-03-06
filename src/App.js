@@ -3,19 +3,26 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  const [myArray,setMyArray] = useState([]);
+  const [myArray,setMyArray] = useState(['테스트1','테스트2']);
+  const [input,setInput] = useState('');
+
+  const handleInput = (e) =>{
+    setInput(e.target.value);
+  }
   const handleClick = () =>{
-    const inputTag = document.querySelector('input');
-    console.log(inputTag);
-    setMyArray([...myArray,inputTag.innerText])
+    //prevState : 업데이트 하기전의 값을 가지고 있음
+    setMyArray((prevState)=>{
+      return [input,...prevState];
+    })
+    setInput('');
   }
 
   return (
     <div>
-      <input type="text" />
+      <input type="text" value={input} onChange={handleInput}/>
       <button onClick={handleClick}>Upload</button>
-      {myArray.forEach((value,idx)=>{
-        (<h1>{value}</h1>)
+      {myArray.map((value,idx)=>{
+        return (<p key={idx}>{value}</p>)
       })}
     </div>
   );
